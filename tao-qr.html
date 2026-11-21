@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tạo mã QR</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #fff5f5; margin: 0; padding: 24px; color: #3b0a0a; }
+    .box { max-width: 520px; margin: 0 auto; text-align: center; }
+    h1 { color: #b3001b; margin-top: 0; }
+    label { font-weight: bold; display: block; text-align: left; }
+    input { width: 100%; padding: 12px; font-size: 1rem; border: 2px solid #e11d2e; border-radius: 10px; margin: 6px 0 4px; }
+    small { color: #6b4b4b; display: block; text-align: left; }
+    button, .tai { background: #e11d2e; color: white; border: 0; padding: 12px 24px; border-radius: 999px; font-size: 1rem; font-weight: bold; cursor: pointer; margin: 14px 4px; text-decoration: none; display: inline-block; }
+    button:hover, .tai:hover { background: #b3001b; }
+    #qr { display: flex; justify-content: center; margin-top: 10px; padding: 16px; background: white; border-radius: 16px; }
+    #qr:empty { display: none; }
+  </style>
+</head>
+<body>
+<div class="box">
+  <h1>Tạo mã QR chung</h1>
+
+  <label for="goc">Địa chỉ trang lời chúc đã đưa lên mạng:</label>
+  <input id="goc" placeholder="https://nguyen_duc_hoang.netlify.app/">
+  <small>Phải là địa chỉ trên mạng (không phải C:/...), thì điện thoại bạn bè mới mở được.</small>
+
+  <button id="nut">Tạo mã QR</button>
+  <div id="qr"></div>
+  <div id="tai"></div>
+</div>
+
+<script>
+  document.getElementById("nut").addEventListener("click", function () {
+    const link = document.getElementById("goc").value.trim();
+    const qr = document.getElementById("qr");
+    const tai = document.getElementById("tai");
+    qr.innerHTML = "";
+    tai.innerHTML = "";
+    if (!link) { alert("Bạn dán địa chỉ trang lời chúc vào ô trên trước nhé."); return; }
+
+    new QRCode(qr, { text: link, width: 260, height: 260 });
+
+    setTimeout(function () {
+      const canvas = qr.querySelector("canvas");
+      if (!canvas) return;
+      const a = document.createElement("a");
+      a.className = "tai";
+      a.textContent = "Tải ảnh QR";
+      a.href = canvas.toDataURL("image/png");
+      a.download = "qr-chuc-mung-nam-moi.png";
+      tai.appendChild(a);
+    }, 300);
+  });
+</script>
+</body>
+</html>
