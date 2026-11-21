@@ -268,6 +268,10 @@ body {
     width: 100%;
     text-align: center;
 }
+#nutBanhChung {
+    white-space: nowrap !important;
+    text-align: center;
+}
   </style>
 </head>
 <body>
@@ -275,7 +279,6 @@ body {
 <!-- VIDEO NỀN TOÀN WEBSITE -->
 <video id="videoNen" autoplay loop playsinline>
     <source src="tiktok_video 4.mp4" type="video/mp4">
-    Trình duyệt không hỗ trợ video.
 </video>
 
 
@@ -435,8 +438,24 @@ document.getElementById("man2").classList.remove("hidden");
 
     document.getElementById("mo").addEventListener("click", hienLoiChuc);
     // Bấm vào bánh trưng để mở ô nhập tên
-document.getElementById("nutBanhChung").addEventListener("click", () => {
+document.getElementById("nutBanhChung").addEventListener("click", async () => {
 
+    // 1. Lấy video nền
+    const videoNen = document.getElementById("videoNen");
+
+    // 2. Bật âm thanh
+    videoNen.muted = false;
+    videoNen.volume = 1;
+
+    // 3. Phát video nền kèm tiếng
+    try {
+        await videoNen.play();
+        console.log("Đã bật tiếng video nền!");
+    } catch (error) {
+        console.log("Không phát được tiếng:", error);
+    }
+
+    // 4. Chuyển sang màn hình nhập tên
     document.getElementById("man0").classList.add("hidden");
 
     document.getElementById("man1").classList.remove("hidden");
@@ -472,5 +491,18 @@ document.getElementById("nutBanhChung").addEventListener("click", () => {
       document.getElementById("daGui").classList.remove("hidden");
     });
   </script>
+
+  <script>
+const videoNen = document.getElementById("videoNen");
+
+// Cho video chạy tự động ở chế độ im lặng
+videoNen.muted = true;
+videoNen.volume = 1;
+
+videoNen.play().catch(error => {
+    console.log("Autoplay video bị chặn:", error);
+});
+</script>
+
 </body>
 </html>
