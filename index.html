@@ -263,7 +263,7 @@ body {
   
 <!-- VIDEO NỀN TOÀN WEBSITE -->
 <video id="videoNen" autoplay muted loop playsinline>
-    <source src="tiktok_video_1.mp4" type="video/mp4">
+    <source src="tiktok_video_1_vertical_fullscene.mp4" type="video/mp4">
     Trình duyệt không hỗ trợ video.
 </video>
 
@@ -335,7 +335,7 @@ body {
   <div class="emoji">🙇‍♂️</div>
   <h1>Cảm ơn bạn! Happy NewYear </h1>
   <div class="nhom-nut">
-    <button id="nutXemVideo">Ấn vô đây xem video nhé!</button>
+    <button id="nutXemVideo">Xin Cảm Ơn!</button>
   </div>
 </div>
 
@@ -345,68 +345,9 @@ body {
     <div class="emoji">🧧</div>
     <h1>Happy NewYear!</h1>
     <div class="nhom-nut">
-      <button class="phu" data-quay="man6">Ấn vô đây để xem video nhé!</button>
+      <button class="phu" data-quay="man6">Xin Cảm Ơn!</button>
     </div>
   </div>
-
-
-<!-- MÀN HÌNH 5: VIDEO VÀ ÂM NHẠC CỦA GỬI LỜI CHÚC -->
-<div class="card video-card hidden" id="man5">
-    <div class="emoji">🎬</div>
-    <h1>Năm Mới An Lành Nhé!</h1>
-    <p class="nho">
-        Cảm ơn bạn, hẹn gặp lại vào năm sau nhé!🧑‍🦳
-    </p>
-
-    <!-- KHU VỰC VIDEO -->
-    <h3>🎥 Video của Hoàng Mits</h3>
-    <video id="videoHoangMits" 
-    controls
-     autoplay
-      playsinline
-      preload="auto">
-        <source src="Tết Đong Đầy  KHOA x Kay Tran x Duck V  HOMIE BOIZ OFFICIAL - Focus Entertainment (720p, h264).mp4" type="video/mp4">
-        Trình duyệt không hỗ trợ video.
-    </video>
-
-    <!-- KHU VỰC NHẠC -->
-    <audio id="nhacHoangMits"
-    loop
-    preload="auto">
-        <source src="nhac.mp3" type="audio/mpeg">
-        Trình duyệt không hỗ trợ âm thanh.
-    </audio>
-    <p class="ky">Mits 🧑‍🦳</p>
-</div>
-
-<!-- MÀN HÌNH 6: VIDEO VÀ ÂM NHẠC CỦA GỬI LỜI CHÚC -->
-<div class="card video-card hidden" id="man6">
-    <div class="emoji">🎬</div>
-    <h1>Năm Mới An Lành Nhé!</h1>
-    <p class="nho">
-        Hẹn gặp lại!🧑‍🦳
-    </p>
-
-    <!-- KHU VỰC VIDEO -->
-    <h3>🎥 Video của Hoàng Mits</h3>
-    <video id="videoHoangMits" 
-    controls
-     autoplay
-      playsinline
-      preload="auto">
-        <source src="tiktok_video_2.mp4" type="video/mp4">
-        Trình duyệt không hỗ trợ video.
-    </video>
-
-    <!-- KHU VỰC NHẠC -->
-    <audio id="nhacHoangMits"
-    loop
-    preload="auto">
-        <source src="nhac.mp3" type="audio/mpeg">
-        Trình duyệt không hỗ trợ âm thanh.
-    </audio>
-    <p class="ky">Mits 🧑‍🦳</p>
-</div>
 
   <script src="loichuc.js"></script>
   <script src="danhsach.js"></script>
@@ -499,13 +440,13 @@ document.getElementById("nutBanhChung").addEventListener("click", () => {
 
     // Chuyển màn hình
     function hienMan(id) {
-      ["man1", "man2", "man3", "man4", "man5", "man6", "man7"].forEach(m =>
+      ["man1", "man2", "man3", "man4", "man7"].forEach(m =>
         document.getElementById(m).classList.toggle("hidden", m !== id));
     }
 
     document.getElementById("nutGui").addEventListener("click", () => hienMan("man3"));
-    document.getElementById("nutBoQua").addEventListener("click", () => {hienMan("man4"); phatvideoVaNhac();});
-   document.getElementById("nutGuiLoiChuc").addEventListener("click", () => {hienMan("man7"); phatVideoVaNhac()});
+    document.getElementById("nutBoQua").addEventListener("click", () => hienMan("man4"));
+   document.getElementById("nutGuiLoiChuc").addEventListener("click", () => hienMan("man7"));
     document.getElementById("nutXemVideo").addEventListener("click", () => hienMan("man5"));
     document.querySelectorAll("[data-quay]").forEach(b =>
       b.addEventListener("click", () => hienMan(b.dataset.quay)));
@@ -524,32 +465,5 @@ document.getElementById("nutBanhChung").addEventListener("click", () => {
       document.getElementById("daGui").classList.remove("hidden");
     });
   </script>
- 
-<!-- Nhạc nền website -->
-<audio id="nhacNen" loop preload="auto">
-    <source src="nhac.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-    const nhacNen = document.getElementById("nhacNen");
-
-    // Thử phát nhạc khi mở website
-    window.addEventListener("load", function () {
-        nhacNen.volume = 1;
-
-        nhacNen.play().catch(function (loi) {
-            console.log("Không tự phát được nhạc:", loi);
-        });
-    });
-
-    // Thử phát lại khi người dùng chạm vào website
-    document.addEventListener("click", function () {
-        if (nhacNen.paused) {
-            nhacNen.play().catch(function (loi) {
-                console.log("Không phát được nhạc:", loi);
-            });
-        }
-    }, { once: true });
-</script>
 </body>
 </html>
