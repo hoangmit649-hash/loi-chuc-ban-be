@@ -356,6 +356,58 @@ body {
         box-sizing: border-box;
     }
   }
+  /* LẤP KHOẢNG TRỐNG TRÊN VÀ DƯỚI WEBSITE */
+html,
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    min-height: 100% !important;
+    background: #800000 !important;
+    overflow-x: hidden !important;
+}
+
+/* Kéo video nền phủ hết phần website */
+#videoNen {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    z-index: -1 !important;
+}
+
+/* Các màn hình website không để khoảng trống */
+.card {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Chỉnh riêng trên điện thoại */
+@media screen and (max-width: 768px) {
+    body {
+        min-height: 100dvh !important;
+    }
+
+    .card:not(.hidden) {
+        width: 100vw !important;
+        min-height: 100dvh !important;
+        margin: 0 !important;
+        padding-bottom: env(safe-area-inset-bottom) !important;
+    }
+
+    #videoNen {
+        width: 100vw !important;
+        height: 100dvh !important;
+    }
+}
   </style>
 </head>
 <body>
