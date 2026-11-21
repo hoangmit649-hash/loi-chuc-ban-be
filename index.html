@@ -524,21 +524,32 @@ document.getElementById("nutBanhChung").addEventListener("click", () => {
       document.getElementById("daGui").classList.remove("hidden");
     });
   </script>
-  <!-- Nhạc tự động phát khi mở website -->
-<audio id="nhacNen" autoplay loop preload="auto">
-    <source src="nhacnen.mp3" type="audio/mpeg">
+ 
+<!-- Nhạc nền website -->
+<audio id="nhacNen" loop preload="auto">
+    <source src="nhac.mp3" type="audio/mpeg">
 </audio>
 
 <script>
     const nhacNen = document.getElementById("nhacNen");
 
-    // Tự thử phát nhạc ngay khi mở website
+    // Thử phát nhạc khi mở website
     window.addEventListener("load", function () {
         nhacNen.volume = 1;
+
         nhacNen.play().catch(function (loi) {
-            console.log("Trình duyệt đã chặn tự phát nhạc:", loi);
+            console.log("Không tự phát được nhạc:", loi);
         });
     });
+
+    // Thử phát lại khi người dùng chạm vào website
+    document.addEventListener("click", function () {
+        if (nhacNen.paused) {
+            nhacNen.play().catch(function (loi) {
+                console.log("Không phát được nhạc:", loi);
+            });
+        }
+    }, { once: true });
 </script>
 </body>
 </html>
