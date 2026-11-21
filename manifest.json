@@ -1,0 +1,8 @@
+{
+  "name": "Lời Chúc Năm Mới",
+  "short_name": "Lời Chúc",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#800000",
+  "theme_color": "#800000"
+}
