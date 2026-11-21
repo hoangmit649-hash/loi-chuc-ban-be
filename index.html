@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
+  <link rel="manifest" href="manifest.json">
+  <!-- Cho phép website hiển thị dạng ứng dụng -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Hiển thị toàn màn hình trên iPhone -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Tên ứng dụng -->
+<meta name="apple-mobile-web-app-title" content="Lời Chúc Năm Mới">
+
+<!-- Giao diện điện thoại -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chúc mừng năm mới</title>
@@ -356,58 +368,6 @@ body {
         box-sizing: border-box;
     }
   }
-  /* LẤP KHOẢNG TRỐNG TRÊN VÀ DƯỚI WEBSITE */
-html,
-body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    min-height: 100% !important;
-    background: #800000 !important;
-    overflow-x: hidden !important;
-}
-
-/* Kéo video nền phủ hết phần website */
-#videoNen {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    z-index: -1 !important;
-}
-
-/* Các màn hình website không để khoảng trống */
-.card {
-    margin: 0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-height: 100vh !important;
-    min-height: 100dvh !important;
-    border: none !important;
-    border-radius: 0 !important;
-    box-sizing: border-box !important;
-}
-
-/* Chỉnh riêng trên điện thoại */
-@media screen and (max-width: 768px) {
-    body {
-        min-height: 100dvh !important;
-    }
-
-    .card:not(.hidden) {
-        width: 100vw !important;
-        min-height: 100dvh !important;
-        margin: 0 !important;
-        padding-bottom: env(safe-area-inset-bottom) !important;
-    }
-
-    #videoNen {
-        width: 100vw !important;
-        height: 100dvh !important;
-    }
-}
   </style>
 </head>
 <body>
