@@ -453,6 +453,8 @@ body {
     line-height: 1.6;
     box-shadow: 0 0 35px gold;
     opacity: 0;
+    max-height: 48vh;
+    overflow-y: auto;
 }
 
 .loiChucTrenQue.hienLoiChuc {
@@ -473,6 +475,43 @@ body {
     font-size: 18px;
     color: #fff3cc;
     width: 90%;
+}
+
+/* Hai nút hiện bên ngoài quẻ sau khi lời chúc đã xuất hiện */
+.nutGieoQue {
+    display: none;
+    position: absolute;
+    bottom: 15%;
+    z-index: 20;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 92%;
+    flex-wrap: wrap;
+}
+.nutGieoQue button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    box-shadow: 0 5px 18px rgba(0,0,0,.25);
+}
+.nutGieoQue button.phu {
+    color: #ffe8a0;
+    border-color: #ffe8a0;
+}
+.man-gieo-que.ketThucGieoQue .nutGieoQue {
+    display: flex;
+}
+.man-gieo-que.ketThucGieoQue .tieuDeGieoQue,
+.man-gieo-que.ketThucGieoQue .ongQue,
+.man-gieo-que.ketThucGieoQue .cacQue,
+.man-gieo-que.ketThucGieoQue .queMayMan {
+    display: none;
+}
+.man-gieo-que.ketThucGieoQue .loiChucTrenQue {
+    top: 42%;
+}
+.man-gieo-que.ketThucGieoQue .dongGieoQue {
+    bottom: 7%;
 }
 
   </style>
@@ -503,23 +542,12 @@ body {
     <p class="nho">Nhập đúng tên Facebook của bạn (không cần gõ dấu) rồi mở lì xì để nhận lời chúc riêng nhé.</p>
     <input id="ten" type="text" maxlength="30" placeholder="Tên Facebook của bạn" autocomplete="off">
     <p class="baoloi hidden" id="baoloi"></p>
-    <button id="mo">Mở lì xì, Nhận lời chúc năm mới 🧧</button>
+    <button id="mo">Nhận lời chúc năm mới 🧧</button>
   </div>
 
-  <!-- Màn hình 2: lời chúc -->
-  <div class="card hidden" id="man2">
-    <div class="emoji">🎉</div>
-    <h1>Chúc mừng năm mới</h1>
-    <p class="loichuc" id="loichuc"></p>
-    <p class="ky" id="ky"></p>
-   
-    <div class="nutBenNgoai">
-      <button id="nutGui">Lời Chào Năm Mới</button>
-      <button id="nutBoQua" class="phu">Năm Mới</button>
-    </div>
-  </div>
+  <!-- Màn 2 cũ đã được thay bằng màn gieo quẻ -->
 
- <!-- Màn hình 3: Gửi lời chúc tới Hoàng Mits -->
+<!-- Màn hình 3: Gửi lời chúc tới Hoàng Mits -->
 <div class="card hidden" id="man3">
     <div class="emoji">📩</div>
     <h1>Gửi Lời Chúc Năm Mới Tới Tôi</h1>
@@ -542,9 +570,9 @@ body {
 <!-- Màn hình 7: Lời cảm ơn -->
 <div class="card hidden" id="man7">
   <div class="emoji">🙇‍♂️</div>
-  <h1>Cảm ơn bạn! Happy NewYear </h1>
+  <h1>Cảm ơn bạn!<br>Happy New Year </h1>
   <div class="nhom-nut">
-    <button id="nutXemVideo">Xin Cảm Ơn!</button>
+    <button id="nutXinCamOn">Xin Cảm Ơn!</button>
   </div>
 </div>
 
@@ -552,11 +580,50 @@ body {
   <!-- Màn hình 4: bỏ qua -->
   <div class="card hidden" id="man4">
     <div class="emoji">🧧</div>
-    <h1>Happy NewYear!</h1>
+    <h1>Happy New Year!</h1>
     <div class="nhom-nut">
       <button class="phu" data-quay="man6">Xin Cảm Ơn!</button>
     </div>
   </div>
+
+<!-- HIỆU ỨNG GIEO QUẺ ĐẦU NĂM -->
+<div id="manGieoQuẻ" class="man-gieo-que hidden">
+    <div class="khungGieoQue">
+
+        <div class="tieuDeGieoQue">✨ LỜI CHÚC ĐẦU NĂM ✨</div>
+
+        <div class="ongQue" id="ongQue">
+            🧧
+        </div>
+
+        <div class="cacQue">
+            <span class="que que1">🧧</span>
+            <span class="que que2">🧧</span>
+            <span class="que que3">🧧</span>
+            <span class="que que4">🧧</span>
+            <span class="que que5">🧧</span>
+            <span class="que que6">🧧</span>
+        </div>
+
+        <div class="queMayMan" id="queMayMan">
+            🧧
+        </div>
+
+        <div class="loiChucTrenQue" id="loiChucTrenQue">
+        </div>
+
+        <p class="dongGieoQue" id="dongGieoQue">
+            Đang dành lời chúc cho bạn cho bạn...
+        </p>
+
+        <!-- Hai nút nằm ngoài quẻ lời chúc -->
+        <div class="nutGieoQue">
+            <button id="nutGui">💌 Lời chào năm mới</button>
+            <button id="nutBoQua" class="phu">Chúc năm mới</button>
+        </div>
+
+    </div>
+</div>
 
   <script src="loichuc.js"></script>
   <script src="danhsach.js"></script>
@@ -611,10 +678,7 @@ if (!chuc) {
 }
 chuc = chuc.split("{ten}").join(ten);
 
-document.getElementById("loichuc").textContent = chuc;
-
 const chuKy = CHU_KY_RIENG[tenChuan] || "Hoàng Mits";
-document.getElementById("ky").textContent = "— " + chuKy;
 
 // Bắt đầu hiệu ứng gieo quẻ trước khi hiện lời chúc
 gieoQue(chuc, chuKy);
@@ -646,6 +710,7 @@ function gieoQue(chuc, chuKy) {
 
     // Hiện màn hình gieo quẻ
     manGieoQue.classList.remove("hidden");
+    manGieoQue.classList.remove("ketThucGieoQue");
 
     // Reset hiệu ứng để nếu chạy lại vẫn hoạt động
     ongQue.classList.remove("dangRung");
@@ -657,7 +722,7 @@ function gieoQue(chuc, chuKy) {
     loiChucTrenQue.textContent = "";
 
     // Giai đoạn 1: Ống quẻ rung
-    dongGieoQue.textContent = "Đang gieo quẻ may mắn cho bạn...";
+    dongGieoQue.textContent = "Đang viết lời chúc cho bạn...";
     ongQue.classList.add("dangRung");
 
     // Giai đoạn 2: Các quẻ bay ra
@@ -665,14 +730,14 @@ function gieoQue(chuc, chuKy) {
         ongQue.classList.remove("dangRung");
         cacQue.classList.add("dangBay");
 
-        dongGieoQue.textContent = "Quẻ may mắn đang xuất hiện...";
+        dongGieoQue.textContent = "Đã tìm thấy...";
     }, 1600);
 
     // Giai đoạn 3: Một quẻ rơi xuống
     setTimeout(() => {
         queMayMan.classList.add("roiXuong");
 
-        dongGieoQue.textContent = "Bạn đã nhận được quẻ đầu năm!";
+        dongGieoQue.textContent = "CHÚC MỪNG NĂM MỚI!";
     }, 3000);
 
     // Giai đoạn 4: Hiện lời chúc trên quẻ
@@ -684,15 +749,11 @@ function gieoQue(chuc, chuKy) {
         dongGieoQue.textContent = "✨ Chúc bạn một năm mới thật may mắn ✨";
     }, 4300);
 
-    // Giai đoạn 5: Kết thúc, chuyển sang màn hình lời chúc chính
+    // Khi lời chúc xuất hiện: hiện 2 nút bên ngoài quẻ và bắt đầu hoa rơi
     setTimeout(() => {
-        manGieoQue.classList.add("hidden");
-
-        document.getElementById("man1").classList.add("hidden");
-        document.getElementById("man2").classList.remove("hidden");
-
+        manGieoQue.classList.add("ketThucGieoQue");
         roiHoa();
-    }, 7500);
+    }, 4300);
 }
 
     document.getElementById("mo").addEventListener("click", hienLoiChuc);
@@ -725,30 +786,19 @@ document.getElementById("nutBanhChung").addEventListener("click", async () => {
 
     // Chuyển màn hình
     function hienMan(id) {
-      ["man1", "man2", "man3", "man4", "man7"].forEach(m =>
+      ["man1", "man3", "man4", "man7"].forEach(m =>
         document.getElementById(m).classList.toggle("hidden", m !== id));
+      // Khi chọn nút trên quẻ, ẩn màn gieo quẻ để chuyển sang màn kế tiếp
+      document.getElementById("manGieoQuẻ").classList.add("hidden");
     }
 
     document.getElementById("nutGui").addEventListener("click", () => hienMan("man3"));
     document.getElementById("nutBoQua").addEventListener("click", () => hienMan("man4"));
    document.getElementById("nutGuiLoiChuc").addEventListener("click", () => hienMan("man7"));
-    document.getElementById("nutXemVideo").addEventListener("click", () => hienMan("man5"));
+    document.getElementById("nutXinCamOn").addEventListener("click", () => hienMan("videoNen"));
     document.querySelectorAll("[data-quay]").forEach(b =>
       b.addEventListener("click", () => hienMan(b.dataset.quay)));
 
-    document.getElementById("nutXacNhanGui").addEventListener("click", () => {
-      const nd = document.getElementById("noiDung").value.trim();
-      const bao = document.getElementById("baoloi3");
-      if (!nd) {
-        bao.textContent = "Bạn viết lời chúc vào ô trên nhé.";
-        bao.classList.remove("hidden");
-        return;
-      }
-      bao.classList.add("hidden");
-      // TODO: gửi `nd` (kèm tên người gửi) lên server / Google Form tại đây
-      document.getElementById("formGui").classList.add("hidden");
-      document.getElementById("daGui").classList.remove("hidden");
-    });
   </script>
 
   <script>
@@ -762,39 +812,6 @@ videoNen.play().catch(error => {
     console.log("Autoplay video bị chặn:", error);
 });
 </script>
-
-<!-- HIỆU ỨNG GIEO QUẺ ĐẦU NĂM -->
-<div id="manGieoQuẻ" class="man-gieo-que hidden">
-    <div class="khungGieoQue">
-
-        <div class="tieuDeGieoQue">✨ GIEO QUẺ ĐẦU NĂM ✨</div>
-
-        <div class="ongQue" id="ongQue">
-            🧧
-        </div>
-
-        <div class="cacQue">
-            <span class="que que1">🧧</span>
-            <span class="que que2">🧧</span>
-            <span class="que que3">🧧</span>
-            <span class="que que4">🧧</span>
-            <span class="que que5">🧧</span>
-            <span class="que que6">🧧</span>
-        </div>
-
-        <div class="queMayMan" id="queMayMan">
-            🧧
-        </div>
-
-        <div class="loiChucTrenQue" id="loiChucTrenQue">
-        </div>
-
-        <p class="dongGieoQue" id="dongGieoQue">
-            Đang gieo quẻ may mắn cho bạn...
-        </p>
-
-    </div>
-</div>
 
 </body>
 </html>
