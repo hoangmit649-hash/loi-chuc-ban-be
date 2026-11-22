@@ -272,6 +272,209 @@ body {
     white-space: nowrap !important;
     text-align: center;
 }
+
+/* MÀN HÌNH GIEO QUẺ */
+.man-gieo-que {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: radial-gradient(circle, #b51e25, #5b0000);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.man-gieo-que.hidden {
+    display: none;
+}
+
+.khungGieoQue {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    max-height: 750px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #ffe8a0;
+}
+
+.tieuDeGieoQue {
+    font-size: 26px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    animation: sangGieoQue 1s infinite alternate;
+}
+
+@keyframes sangGieoQue {
+    from { text-shadow: 0 0 5px gold; }
+    to { text-shadow: 0 0 25px gold, 0 0 40px orange; }
+}
+
+/* Ống quẻ rung lắc */
+.ongQue {
+    font-size: 100px;
+    z-index: 2;
+}
+
+.ongQue.dangRung {
+    animation: rungOngQue 0.12s infinite;
+}
+
+@keyframes rungOngQue {
+    0%   { transform: rotate(-12deg) translateX(-5px); }
+    50%  { transform: rotate(12deg) translateX(5px); }
+    100% { transform: rotate(-12deg) translateX(-5px); }
+}
+
+/* Các quẻ bay ra */
+.cacQue {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.que {
+    position: absolute;
+    font-size: 40px;
+    opacity: 0;
+}
+
+.que1 { left: 20%; top: 50%; }
+.que2 { left: 70%; top: 50%; }
+.que3 { left: 35%; top: 50%; }
+.que4 { left: 60%; top: 50%; }
+.que5 { left: 45%; top: 50%; }
+.que6 { left: 25%; top: 50%; }
+
+.cacQue.dangBay .que1 {
+    animation: bayQue1 1.3s forwards;
+}
+.cacQue.dangBay .que2 {
+    animation: bayQue2 1.3s forwards;
+}
+.cacQue.dangBay .que3 {
+    animation: bayQue3 1.3s forwards;
+}
+.cacQue.dangBay .que4 {
+    animation: bayQue4 1.3s forwards;
+}
+.cacQue.dangBay .que5 {
+    animation: bayQue5 1.3s forwards;
+}
+.cacQue.dangBay .que6 {
+    animation: bayQue6 1.3s forwards;
+}
+
+@keyframes bayQue1 {
+    0% { opacity: 0; transform: translate(0,0) rotate(0); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-100px,-180px) rotate(360deg); }
+}
+@keyframes bayQue2 {
+    0% { opacity: 0; transform: translate(0,0) rotate(0); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translate(100px,-200px) rotate(-360deg); }
+}
+@keyframes bayQue3 {
+    0% { opacity: 0; transform: translate(0,0) rotate(0); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translate(-120px,100px) rotate(360deg); }
+}
+@keyframes bayQue4 {
+    0% { opacity: 0; transform: translate(0,0) rotate(0); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translate(120px,100px) rotate(-360deg); }
+}
+@keyframes bayQue5 {
+    0% { opacity: 0; transform: translate(0,0) rotate(0); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translate(0,-220px) rotate(360deg); }
+}
+@keyframes bayQue6 {
+    0% { opacity: 0; transform: translate(0,0) rotate(0); }
+    40% { opacity: 1; }
+    100% { opacity: 0; transform: translate(0,200px) rotate(-360deg); }
+}
+
+/* Quẻ may mắn rơi xuống */
+.queMayMan {
+    position: absolute;
+    top: 15%;
+    font-size: 65px;
+    opacity: 0;
+    z-index: 5;
+}
+
+.queMayMan.roiXuong {
+    animation: queRoi 1.3s cubic-bezier(.2,.7,.3,1) forwards;
+}
+
+@keyframes queRoi {
+    0% {
+        opacity: 0;
+        transform: translateY(-300px) rotate(180deg);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(250px) rotate(15deg);
+    }
+    85% {
+        transform: translateY(220px) rotate(-10deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(240px) rotate(0deg);
+    }
+}
+
+/* Lời chúc xuất hiện trên quẻ */
+.loiChucTrenQue {
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    width: min(80%, 320px);
+    transform: translate(-50%, -50%) scale(0.5);
+    background: #fff0c6;
+    color: #8b0000;
+    border: 4px solid #ffd45b;
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.6;
+    box-shadow: 0 0 35px gold;
+    opacity: 0;
+}
+
+.loiChucTrenQue.hienLoiChuc {
+    animation: hienQue 0.8s forwards;
+}
+
+@keyframes hienQue {
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.dongGieoQue {
+    position: absolute;
+    bottom: 8%;
+    text-align: center;
+    font-size: 18px;
+    color: #fff3cc;
+    width: 90%;
+}
+
   </style>
 </head>
 <body>
@@ -291,11 +494,6 @@ body {
          alt="Bánh chưng">
         <span class="chu-banh-chung">BÁNH CHƯNG</span>
     </button>
-
-</div>
-
-<div id="bocbanhchung" class="hidden">
-    🎊
 </div>
 
   <!-- Màn hình 1: bao lì xì -->
@@ -314,19 +512,20 @@ body {
     <h1>Chúc mừng năm mới</h1>
     <p class="loichuc" id="loichuc"></p>
     <p class="ky" id="ky"></p>
-    <div class="nhom-nut">
-      <button id="nutGui">Gửi lời chúc tới Hoàng Mits</button>
-      <button id="nutBoQua" class="phu">Bỏ qua</button>
+   
+    <div class="nutBenNgoai">
+      <button id="nutGui">Lời Chào Năm Mới</button>
+      <button id="nutBoQua" class="phu">Năm Mới</button>
     </div>
   </div>
 
  <!-- Màn hình 3: Gửi lời chúc tới Hoàng Mits -->
 <div class="card hidden" id="man3">
     <div class="emoji">📩</div>
-    <h1>Gửi đôi lời chúc năm mới tới Hoàng Mits</h1>
+    <h1>Gửi Lời Chúc Năm Mới Tới Tôi</h1>
     <div id="formGui">
         <p class="nho">
-            Viết vài dòng gửi lại cho Hoàng Mits nhé.
+            Viết vài dòng gửi cho tôi nhé.
         </p>
         <textarea
             id="noiDung"
@@ -335,7 +534,7 @@ body {
         ></textarea>
         <p class="baoloi hidden" id="baoloi3"></p>
         <div class="nhom-nut">
-            <button id="nutGuiLoiChuc">Gửi lời chúc</button>
+            <button id="nutGuiLoiChuc">Chúc Năm Mới</button>
         </div>
     </div>
 </div>
@@ -413,12 +612,12 @@ if (!chuc) {
 chuc = chuc.split("{ten}").join(ten);
 
 document.getElementById("loichuc").textContent = chuc;
-  const chuKy = CHU_KY_RIENG[tenChuan] || "Hoàng Mits";
+
+const chuKy = CHU_KY_RIENG[tenChuan] || "Hoàng Mits";
 document.getElementById("ky").textContent = "— " + chuKy;
-      // Ẩn màn hình nhập tên
-document.getElementById("man1").classList.add("hidden");
-document.getElementById("man2").classList.remove("hidden");
-    roiHoa();
+
+// Bắt đầu hiệu ứng gieo quẻ trước khi hiện lời chúc
+gieoQue(chuc, chuKy);
 
     }
 
@@ -435,6 +634,66 @@ document.getElementById("man2").classList.remove("hidden");
         document.body.appendChild(s);
       }
     }
+
+    // HIỆU ỨNG GIEO QUẺ MAY MẮN
+function gieoQue(chuc, chuKy) {
+    const manGieoQue = document.getElementById("manGieoQuẻ");
+    const ongQue = document.getElementById("ongQue");
+    const cacQue = document.querySelector(".cacQue");
+    const queMayMan = document.getElementById("queMayMan");
+    const loiChucTrenQue = document.getElementById("loiChucTrenQue");
+    const dongGieoQue = document.getElementById("dongGieoQue");
+
+    // Hiện màn hình gieo quẻ
+    manGieoQue.classList.remove("hidden");
+
+    // Reset hiệu ứng để nếu chạy lại vẫn hoạt động
+    ongQue.classList.remove("dangRung");
+    cacQue.classList.remove("dangBay");
+    queMayMan.classList.remove("roiXuong");
+    loiChucTrenQue.classList.remove("hienLoiChuc");
+
+    // Xóa lời chúc cũ
+    loiChucTrenQue.textContent = "";
+
+    // Giai đoạn 1: Ống quẻ rung
+    dongGieoQue.textContent = "Đang gieo quẻ may mắn cho bạn...";
+    ongQue.classList.add("dangRung");
+
+    // Giai đoạn 2: Các quẻ bay ra
+    setTimeout(() => {
+        ongQue.classList.remove("dangRung");
+        cacQue.classList.add("dangBay");
+
+        dongGieoQue.textContent = "Quẻ may mắn đang xuất hiện...";
+    }, 1600);
+
+    // Giai đoạn 3: Một quẻ rơi xuống
+    setTimeout(() => {
+        queMayMan.classList.add("roiXuong");
+
+        dongGieoQue.textContent = "Bạn đã nhận được quẻ đầu năm!";
+    }, 3000);
+
+    // Giai đoạn 4: Hiện lời chúc trên quẻ
+    setTimeout(() => {
+        loiChucTrenQue.textContent = chuc + "\n\n— " + chuKy;
+        loiChucTrenQue.style.whiteSpace = "pre-line";
+        loiChucTrenQue.classList.add("hienLoiChuc");
+
+        dongGieoQue.textContent = "✨ Chúc bạn một năm mới thật may mắn ✨";
+    }, 4300);
+
+    // Giai đoạn 5: Kết thúc, chuyển sang màn hình lời chúc chính
+    setTimeout(() => {
+        manGieoQue.classList.add("hidden");
+
+        document.getElementById("man1").classList.add("hidden");
+        document.getElementById("man2").classList.remove("hidden");
+
+        roiHoa();
+    }, 7500);
+}
 
     document.getElementById("mo").addEventListener("click", hienLoiChuc);
     // Bấm vào bánh trưng để mở ô nhập tên
@@ -503,6 +762,39 @@ videoNen.play().catch(error => {
     console.log("Autoplay video bị chặn:", error);
 });
 </script>
+
+<!-- HIỆU ỨNG GIEO QUẺ ĐẦU NĂM -->
+<div id="manGieoQuẻ" class="man-gieo-que hidden">
+    <div class="khungGieoQue">
+
+        <div class="tieuDeGieoQue">✨ GIEO QUẺ ĐẦU NĂM ✨</div>
+
+        <div class="ongQue" id="ongQue">
+            🧧
+        </div>
+
+        <div class="cacQue">
+            <span class="que que1">🧧</span>
+            <span class="que que2">🧧</span>
+            <span class="que que3">🧧</span>
+            <span class="que que4">🧧</span>
+            <span class="que que5">🧧</span>
+            <span class="que que6">🧧</span>
+        </div>
+
+        <div class="queMayMan" id="queMayMan">
+            🧧
+        </div>
+
+        <div class="loiChucTrenQue" id="loiChucTrenQue">
+        </div>
+
+        <p class="dongGieoQue" id="dongGieoQue">
+            Đang gieo quẻ may mắn cho bạn...
+        </p>
+
+    </div>
+</div>
 
 </body>
 </html>
